@@ -15,23 +15,37 @@ ui <- fluidPage(theme = shinytheme("superhero"),
                                 min = -2,
                                 max = +2,
                                 value = 1,
-                                step = 0.01),
+                                step = 0.01
+                                ),
                     sliderInput("amplitude",
                                 "Seasonal amplitude:",
                                 min = 0,
                                 max = 50,
-                                value = 5),
+                                value = 5
+                                ),
                     sliderInput("amplitude_i",
                                 "Irregular amplitude:",
                                 min = 0,
                                 max = 5,
-                                value = 1)
+                                value = 1
+                                ),
+                    selectInput(inputId = "print_lag",
+                                label = "Select lag",
+                                choices = c(TRUE, FALSE),
+                                selected = FALSE
+                                ),                   
+                    selectInput(inputId = "lag_n",
+                                label = "Select lag",
+                                choices = seq(1, 99),
+                                selected = 1
+                               )
                   ),
                   
                   # Show a plot of the generated distribution
                   mainPanel(
                     plotOutput("timePlot"),
-                    plotOutput("ACF")
+                    plotOutput("ACF"),
+                    plotOutput("lagPlot")
                   )
                 )
 )
